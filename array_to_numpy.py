@@ -35,18 +35,24 @@ from PIL import Image
 # a row          : matrix[A]       = [[0, 0, 0],[0, 0, 0],[0, 0, 0],[0, 0, 0]]  4 columns * 3 cells
 # row/col        : matrix[A][B]    = [0, 0, 0]                                  3 cells
 # single cell    : matrix[A][B][C] = 0                                          1 cell
+#
+# data[0] = [[255, 255, 0], [255, 255, 0], [255, 255, 0], [255, 255, 0]]
+# data[0][0] = [255, 255, 0]
+# data[0][0][0] = 255
+################################################################################
 
-data = np.zeros((
-    5,                      # horizontal
-    4,                      # vertical
-    3                       # depth
-),
-    dtype=np.uint8
+data = np.zeros(                    # create zero-filled matrix
+    (                               # from tuple, 3 dimensions
+        5,                          # horizontal    5 rows
+        4,                          # vertical      4 columns
+        3                           # depth         3 cells
+    ),
+    dtype=np.uint8                  # set cell type to int
 )
 
-data[:] = [255, 255, 0]
-data[0] = [[255, 255, 0], [255, 255, 0], [255, 255, 0], [255, 255, 0]]
-data[0][0] = [255, 255, 0]
-data[0][0][0] = 0
+data[:] = [255, 255, 0]             # set all rows/columns to yellow
+print(data)
 
-# print(data[5])
+img = Image.fromarray(data, 'RGB')  # create RGB image using data
+img.save('canvas.png')              # save image to file
+
