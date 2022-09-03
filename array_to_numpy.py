@@ -129,8 +129,9 @@ slice_rect = (slice(1, 4), slice(1, 3))
 slice_0to2 = slice(0, 3)
 slice_0to1 = slice(0, 2)
 data[(slice(0, 3), slice(0, 2))] = [255, 0, 0]      # set matrix/image rows 2 and 3 to red
-data[0:3, 0:2] = [255, 0, 0]                          # set matrix/image rows 2 and 3 to red
+data[0:3, 0:2] = [255, 0, 0]                        # set matrix/image rows 2 and 3 to red
 
+data[3:, 1:] = [50, 0, 250]                        # add another shape
 
 img = Image.fromarray(data, 'RGB')                  # create RGB image using data
 img.save('canvas.png')                              # save image to file
