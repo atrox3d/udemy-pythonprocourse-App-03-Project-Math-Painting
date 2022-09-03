@@ -85,8 +85,39 @@ print(data.shape)                                   # 5, 4, 3
 slice_all = slice(None)
 slice_1and2 = slice(1, 3)
 slice_allrows_cols1and2 = (slice(None), slice(1, 3))
-data[(slice(None), slice(1, 3))] = [255, 0, 0]      # set matrix/image rows 2 and 3 to red
-data[:, 1:3] = [255, 0, 0]                          # set matrix/image rows 2 and 3 to red
+# data[(slice(None), slice(1, 3))] = [255, 0, 0]      # set matrix/image rows 2 and 3 to red
+# data[:, 1:3] = [255, 0, 0]                          # set matrix/image rows 2 and 3 to red
+
+#
+# [1:3, :1:3]
+# select a square: rows 2 and 3, cols 2 and 3
+#
+# the comma implies function slice tuple:
+# data[(slice(1, 3), slice(1, 3))]
+#
+# [    ]
+# [ ** ]
+# [ ** ]
+# [    ]
+# [    ]
+#
+slice_1and2 = slice(1, 3)
+slice_square = (slice(1, 3), slice(1, 3))
+# data[(slice(1, 3), slice(1, 3))] = [255, 0, 0]      # set matrix/image rows 2 and 3 to red
+# data[1:3, 1:3] = [255, 0, 0]                          # set matrix/image rows 2 and 3 to red
+
+
+#
+# [    ]
+# [ ** ]
+# [ ** ]
+# [ ** ]
+# [    ]
+#
+slice_1to3 = slice(1, 4)
+slice_rect = (slice(1, 4), slice(1, 3))
+data[(slice(1, 4), slice(1, 3))] = [255, 0, 0]      # set matrix/image rows 2 and 3 to red
+data[1:4, 1:3] = [255, 0, 0]                          # set matrix/image rows 2 and 3 to red
 
 
 img = Image.fromarray(data, 'RGB')                  # create RGB image using data
