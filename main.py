@@ -9,8 +9,15 @@ class Canvas:
         self.width = width
         self.color = color
 
-        self.data = np.zeros((self.height, self.width, 3), dtype=np.uint8)
-        self.data[:] = self.color
+        self.data = np.zeros(                           # create zero-filled matrix
+            (                                           # from tuple, 3 dimensions
+                self.height,                            # vertical
+                self.width,                             # horizontal
+                3                                       # depth         3 cells
+            ),
+            dtype=np.uint8                              # set cell type to int
+        )
+        self.data[:] = self.color                       # set all cells to color
 
     def make(self, imagepath):
         img = Image.fromarray(self.data, 'RGB')
@@ -27,7 +34,13 @@ class Rectangle:
         self.color = color
 
     def draw(self, canvas):
-        canvas.data[self.row: self.row + self.height, self.column:self.column + self.width] = self.color
+        canvas.data[                                    # slicing with tuple
+            self.row:                                   # first dimension: from row
+            self.row + self.height                      # to row + height
+            ,                                           # comma for tuple
+            self.column:                                # second dimension: from col
+            self.column + self.width                    # to col + width
+        ] = self.color
 
 
 class Square:
@@ -38,7 +51,13 @@ class Square:
         self.color = color
 
     def draw(self, canvas):
-        canvas.data[self.row: self.row + self.side, self.column:self.column + self.side] = self.color
+        canvas.data[
+            self.row:                                   # slicing with tuple
+            self.row + self.side                        # first dimension: from row
+            ,                                           # to row + side
+            self.column:                                # comma for tuple
+            self.column + self.side                     # second dimension: from col
+        ] = self.color                                  # to col + side
 
 
 canvas = Canvas(

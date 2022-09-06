@@ -45,8 +45,8 @@ from PIL import Image
 
 data = np.zeros(                                    # create zero-filled matrix
     (                                               # from tuple, 3 dimensions
-        5,                                          # horizontal    5 rows
-        4,                                          # vertical      4 columns
+        5,                                          # vertical      5 rows
+        4,                                          # horizontal    4 columns
         3                                           # depth         3 cells
     ),
     dtype=np.uint8                                  # set cell type to int
