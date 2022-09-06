@@ -1,12 +1,6 @@
 from canvas import Canvas
 from shapes import Rectangle, Square
 
-# r1 = Rectangle(row=1, column=6, height=7, width=10, color=(100, 200, 125))
-# r1.draw(canvas)
-# s1 = Square(row=1, column=3, side=3, color=(0, 100, 222))
-# s1.draw(canvas)
-# canvas.make('images/test.png')
-
 canvas_width = int(input('Enter canvas width: '))
 canvas_heigth = int(input('Enter canvas heigth: '))
 
@@ -22,21 +16,21 @@ canvas = Canvas(
     color=colors[canvas_color]
 )
 choices = ['rectangle', 'square']
-while True:
-    while (
+while True:                                                         # main loop
+    while (                                                         # shape loop
             shape_type := input(
                 'What would you like to draw? '
                 '(square, rectangle, quit exits): '
             ).lower()
     ) in choices:
-        row = int(input(f'Enter row for {shape_type}: '))
-        column = int(input(f'Enter column for {shape_type}: '))
+        row = int(input(f'Enter row for {shape_type}: '))           # row is common to all shapes
+        column = int(input(f'Enter column for {shape_type}: '))     # colums is commont to all shapes
 
-        if shape_type == "rectangle":
+        if shape_type == "rectangle":                               # rectangtle: width, heigth
             width = int(input(f'Enter width of {shape_type}: '))
             height = int(input(f'Enter height of {shape_type}: '))
         else:
-            side = int(input(f'Enter side of {shape_type}: '))
+            side = int(input(f'Enter side of {shape_type}: '))      # square: side, side
 
         while (red := int(input(f'How much red (0-255) for {shape_type}?: '))) not in range(0, 256):
             pass
@@ -54,8 +48,8 @@ while True:
             s1 = Square(row=row, column=column, side=side, color=(red, green, blue))
             s1.draw(canvas)
     else:
-        if shape_type == 'quit':
-            break
+        if shape_type == 'quit':                                    # shape is not in list
+            break                                                   # quit breaks, everything else continues
 
 canvas.make('images/shapes.png')
 
