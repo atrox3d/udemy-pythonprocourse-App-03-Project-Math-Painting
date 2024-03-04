@@ -3,3 +3,5 @@
 /private/
 /secret/
 /images/
+
+__pycache__
